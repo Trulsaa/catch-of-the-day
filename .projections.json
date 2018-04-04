@@ -1,0 +1,46 @@
+{
+    "src/components/*.js": {
+        "alternate": "src/components/{}.test.js",
+        "type": "component",
+        "template": [
+            "import React from 'react'",
+            "",
+            "class {} extends React.Component {",
+            "",
+            "}",
+            "",
+            "export defau {}"
+        ]
+    },
+    "src/components/*.test.js": {
+        "alternate": "src/components/{}.js",
+        "type": "unit",
+        "template": [
+        "import React from 'react'",
+        "import enzyme from 'enzyme'",
+        "import sinon from 'sinon'",
+        "import {} from './{}'",
+        "",
+        "const shallow = enzyme.shallow",
+        "const spy = sinon.spy",
+        "const stub = sinon.stub",
+        "",
+        "describe('{}', () => {",
+        "",
+        "    let wrapper",
+        "    beforeEach(() => {",
+        "        wrapper = shallow(<{} />)",
+        "    })",
+        "",
+        "    afterEach(() => {",
+        "        wrapper = null",
+        "    })",
+        "",
+        "    it('should', () => {",
+        "        expect(true).toEqual(true)",
+        "    })",
+        "",
+        "})"
+    ]
+    }
+}
