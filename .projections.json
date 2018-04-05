@@ -1,19 +1,27 @@
 {
-    "src/components/*.js": {
-        "alternate": "src/components/{}.test.js",
+    "src/components/*.jsx": {
+        "alternate": "src/components/{}.test.jsx",
         "type": "component",
         "template": [
-            "import React from 'react'",
+            "import React from 'react';",
+            "",
+            "// const {} = () => (",
+            "",
+            "// );",
             "",
             "class {} extends React.Component {",
+            "  render() {",
+            "    return (",
             "",
-            "}",
+            "    )",
+            "  };",
+            "};",
             "",
-            "export defau {}"
+            "export default {};"
         ]
     },
-    "src/components/*.test.js": {
-        "alternate": "src/components/{}.js",
+    "src/components/*.test.jsx": {
+        "alternate": "src/components/{}.jsx",
         "type": "unit",
         "template": [
         "import React from 'react'",
