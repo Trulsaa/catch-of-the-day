@@ -1,11 +1,17 @@
 import React from 'react';
 import { formatPrice } from '../helpers';
+import Chart from './Chart'
 
 class Order extends React.Component {
   renderOrder = key => {
     const fish = this.props.fishes[key];
     const count = this.props.order[key];
-    if (fish.status !== 'available') {
+    const isAvailable = fish && fish.status !== 'available';
+
+    // Make sure the fish is liaded before we continue
+    if (!fish) return null;
+
+    if (isAvailable) {
       return (
         <li key={key}>
           Sorry {fish ? fish.name : 'fish'} is no longer available
@@ -39,6 +45,7 @@ class Order extends React.Component {
         <div className="total">
           Total:
           <strong>{formatPrice(total)}</strong>
+          <Chart fishes={this.props.fishes} order={this.props.order}/>
         </div>
       </div>
     );
