@@ -1,24 +1,28 @@
 import React from 'react';
-import Highcharts from 'highcharts';
 import ReactHighcharts from 'react-highcharts';
 
 class Chart extends React.Component {
   render() {
     const { fishes, order } = this.props;
-    const isLoaded =
+    const fishIsLoaded =
       Object.keys(fishes).length === 0 && fishes.constructor === Object;
-    if (isLoaded) return null;
 
-    const costs = Object.keys(order).map(key => {
+    if (fishIsLoaded) return null;
+
+    const orderKeys = Object.keys(order).filter(
+      key => fishes[key].status === 'available',
+    );
+
+    const costs = orderKeys.map(key => {
       const count = order[key];
       const price = parseFloat(fishes[key].price);
       const acumulatedPrice = count * price;
       return acumulatedPrice / 100;
     });
 
-    const weights = Object.keys(order).map(key => order[key]);
+    const weights = orderKeys.map(key => order[key]);
 
-    const names = Object.keys(order).map(key => fishes[key].name);
+    const names = orderKeys.map(key => fishes[key].name);
 
     const config = {
       chart: {
